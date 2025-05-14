@@ -1,0 +1,19 @@
+{
+  "appTitle": "Family Information Management",
+  "languageSelection": "Select Language",
+  "familyMembers": "Family Members",
+  "name": "Name",
+  "relation": "Relation",
+  "age": "Age",
+  "addMember": "Add Family Member",
+  "viewFamilyTree": "View Family Tree",
+  "viewFamilyHistory": "View Family History",
+  "familyHistory": "Family History",
+  "noMembers": "No family members added yet.",
+  "memberAdded": "Family member added successfully!",
+  "errorAddingMember": "Error adding family member. Please try again.",
+  "familyTreeTitle": "Family Tree Visualization",
+  "familyTreeDescription": "Explore your family tree and understand your lineage.",
+  "historyTitle": "Family History",
+  "historyDescription": "Learn about your family's origins and history."
+}

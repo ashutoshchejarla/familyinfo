@@ -1,0 +1,19 @@
+{
+  "appTitle": "कुटुंब माहिती व्यवस्थापन",
+  "languageSelection": "भाषा निवडा",
+  "familyMembers": "कुटुंब सदस्य",
+  "name": "नाव",
+  "relation": "संबंध",
+  "age": "वय",
+  "addMember": "सदस्य जोडा",
+  "viewFamilyTree": "कुटुंब वृक्ष पहा",
+  "viewFamilyHistory": "कुटुंब इतिहास पहा",
+  "familyHistory": "कुटुंबाचा इतिहास",
+  "historyContent": "कुटुंबाच्या इतिहासाची माहिती येथे दिली जाईल.",
+  "noMembers": "कुटुंबात कोणतेही सदस्य नाहीत.",
+  "memberAdded": "सदस्य यशस्वीरित्या जोडले गेले.",
+  "errorAddingMember": "सदस्य जोडण्यात त्रुटी.",
+  "confirmDelete": "तुम्हाला हा सदस्य हटवायचा आहे का?",
+  "memberDeleted": "सदस्य यशस्वीरित्या हटवला गेला.",
+  "errorDeletingMember": "सदस्य हटवण्यात त्रुटी."
+}
