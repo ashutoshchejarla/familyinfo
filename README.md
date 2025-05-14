@@ -45,4 +45,4 @@ Contributions to the Family Info App are welcome\! If you have ideas for new fea
   * Improved styling and responsiveness.
   * Interactive charts and statistics about the family.
 
-We hope this app helps our family connect with our shared past and build a stronger future together\!
+i hope this app helps our family connect with our shared past and build a stronger future together\!
