@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Tree</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        /* Enhanced styles for the family tree */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            background-color: #1f1f1f;
+            color: white;
+            padding: 20px 0;
+            background-image: linear-gradient(rgb(83, 83, 83), black);
+        }
+        .family-tree {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+        .generation {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .member {
+            margin: 0 20px;
+            text-align: center;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 10px;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        .member::after {
+            content: '';
+            display: none; /* Remove the line inside the box */
+        }
+        .generation:first-child .member::after {
+            display: none;
+        }
+        .connector {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: 10px 0; /* Adjust spacing */
+        }
+        .connector::before,
+        .connector::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background-color: #4CAF50;
+        }
+        .connector::before {
+            left: 0;
+        }
+        .connector::after {
+            right: 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+        /* Updated popup styles with both opening and closing animations */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .popup-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .popup-overlay.active .popup-content {
+            transform: translate(-50%, -50%) scale(1); /* Opening animation */
+        }
+        .popup-overlay.closing .popup-content {
+            transform: translate(-50%, -50%) scale(0.8); /* Closing animation */
+        }
+        .popup-content img {
+            max-width: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .popup-content h2 {
+            margin: 10px 0;
+        }
+        .popup-content p {
+            margin: 5px 0;
+        }
+         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+        @keyframes colour_shift {
+         0% {background-color: #4d4c4c;}
+        11% {background-color: #000000;}
+        22% {background-color: #5a5a5a;}
+        33% {background-color: #000000;}
+        44% {background-color: #4e4e4e;}
+        55% {background-color: #000000;}
+        66% {background-color: #383838;}
+        77% {background-color: #000000;}
+        88% {background-color: #4e4e4e;}
+        100% {background-color: #000000;}
+}
+
+        .shift {
+          animation: colour_shift 6s linear 0.3s infinite;
+          align-items: center;
+          border-radius: 3px;
+          padding: 1vh;
+          }
+          .designer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+         .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #000000;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #343434;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Family Tree</h1>
+        <a href="index.html" class="back-button">← Back</a>
+    </header>
+    <main>
+        <div id="family-tree-container" class="family-tree">
+            <div class="generation">
+                <div class="member" onclick="showPopup('Grandparent', '75', 'Grandparent', 'The grandparent is the pillar of the family with a wealth of wisdom.', 'assets/images/grandparent.jpg')">Grandparent</div>
+            </div>
+            <div class="connector"></div>
+            <div class="generation">
+                <div class="member" onclick="showPopup('Parent 1', '45', 'Father', 'Parent 1 is a dedicated family member who loves gardening and reading.', 'assets/images/parent1.jpg')">Parent 1</div>
+                <div class="member" onclick="showPopup('Parent 2', '43', 'Mother', 'Parent 2 is a caring family member who enjoys cooking and painting.', 'assets/images/parent2.jpg')">Parent 2</div>
+            </div>
+            <div class="connector"></div>
+            <div class="generation">
+                <div class="member" onclick="showPopup('Child 1', '20', 'Child', 'Child 1 is a bright student who loves sports and music.', 'assets/images/child1.jpg')">Child 1</div>
+                <div class="member" onclick="showPopup('Child 2', '18', 'Child', 'Child 2 is a creative artist who enjoys painting and writing.', 'assets/images/child2.jpg')">Child 2</div>
+                <div class="member" onclick="showPopup('Child 3', '15', 'Child', 'Child 3 is an energetic individual who loves exploring and learning.', 'assets/images/child3.jpg')">Child 3</div>
+            </div>
+        </div>
+        <div id="popup" class="popup-overlay" onclick="closePopup(event)">
+            <div class="popup-content">
+                <img id="popup-image" src="" alt="Person">
+                <h2 id="popup-name"></h2>
+                <p id="popup-age"></p>
+                <p id="popup-relation"></p>
+                <p id="popup-bio"></p>
+            </div>
+        </div>
+    </main>
+    <footer class="designer shift">Designed by Ashutosh Chejarla</footer>
+    <script src="assets/js/family-tree.js"></script>
+    <script>
+        function showPopup(name, age, relation, bio, image) {
+            document.getElementById('popup-name').textContent = name;
+            document.getElementById('popup-age').textContent = `Age: ${age}`;
+            document.getElementById('popup-relation').textContent = `Relation: ${relation}`;
+            document.getElementById('popup-bio').textContent = bio;
+            document.getElementById('popup-image').src = image;
+            const popup = document.getElementById('popup');
+            popup.classList.remove('closing'); // Ensure no closing animation is applied
+            popup.classList.add('active'); // Add opening animation
+        }
+
+        function closePopup(event) {
+            if (event.target.id === 'popup') {
+                const popup = document.getElementById('popup');
+                popup.classList.add('closing'); // Add closing animation
+                setTimeout(() => {
+                    popup.classList.remove('active', 'closing'); // Remove active and closing states after animation
+                }, 300); // Match the duration of the CSS transition
+            }
+        }
+
+        document.querySelectorAll('.member').forEach(member => {
+            member.addEventListener('click', function () {
+                document.querySelectorAll('.member').forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        document.getElementById('popup').addEventListener('click', function () {
+            document.querySelectorAll('.member').forEach(m => m.classList.remove('active'));
+        });
+    </script>
+</body>
+</html>
