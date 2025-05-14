@@ -1,6 +1,6 @@
 # Family Info App
 
-\<img src="[suspicious link removed]" alt="Family Gathering" width="600"\>
+![](https://media.istockphoto.com/id/1481644764/photo/big-family-and-friends-celebrating-outside-at-home-diverse-group-of-children-adults-and-old.jpg?s=612x612&w=0&k=20&c=Oum7sizipUPaAGqnvaug8NzLfhfrc9ttp9Vbpe7Ivzk=)
 
 ## Overview
 
@@ -19,13 +19,9 @@ This repository contains the source code and resources for the application, buil
   * **User Authentication (Planned):** Secure access for family members to contribute and view information.
   * **Data Export/Import (Planned):** Options to export and import family data in standard formats.
 
-\<img src="[suspicious link removed]" alt="Family Tree Visualization" width="400"\>
-
 ## Technologies Used
 
   * **Frontend:** HTML, CSS, JavaScript
-
-\<img src="[suspicious link removed]" alt="Family History Artifacts" width="500"\>
 
 ## Contributing
 
