@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1 class="shift">Family Info</h1>
+            <h1 class="loading-text">Family Info</h1>
             <div class="language-selection">
                 <label for="language">Select Language:</label> <br>
                 <select id="language" onchange="changeLanguage()">
@@ -24,6 +24,7 @@
                 <ul>
                     <li><a href="family-tree.html" class="button1">View Family Tree</a></li>
                     <li><a href="family-history.html" class="button2">View Family History</a></li>
+                    <li><a href="rotation.html" class="button2">Rotation css</a></li>
                 </ul>
             </section>
         </main>
@@ -75,7 +76,12 @@
             transform: translateX(-13%);
         }
         .button:hover {
-            background: rgb(74, 74, 74);
+            	place-self: center;
+	            background: linear-gradient(90deg, white, black , white, white, white) -100%/ 200%;
+	            background-clip: text;
+	            color: transparent;
+	            font: 900 clamp(2em, 10vw, 10em) exo, sans-serif;
+	            animation: shimmer 0.3s linear 
         }
         .container{
             background-color: black;
@@ -108,13 +114,37 @@
             padding: 20px;
             text-align: center;
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
+            font-size: 12px;
             font-weight: 600;
             position: relative;
             z-index: 1;
             overflow: hidden;
             border-radius: 2vh;
           }
+
+          html, body { display: grid }
+html { height: 100% }
+body { background: #222 }
+
+.loading-text {
+	place-self: center;
+	background: linear-gradient(90deg, rgb(210, 179, 123), rgb(121, 126, 70), rgb(194, 226, 131), rgb(130, 130, 130), rgb(210, 179, 123)) -100%/ 200%;
+	/* being excessively careful with compat, 
+	 * though this has been supported unprefixed and 
+	 * in the shorthand across major browsers for a while */
+	-webkit-background-clip: text;
+	        background-clip: text;
+	/* use color, don't use -webkit-text-fill-color anymore, 
+	 * was meant to solve a problem we haven't had in years */
+	color: transparent;
+	font: 900 clamp(2em, 10vw, 10em) exo, sans-serif;
+	animation: shimmer 2s linear infinite
+}
+
+@keyframes shimmer { to { background-position: 100% } 
+}
+
+@keyframes shimmer { to { background-position: 100% } }
 
     </style>
 
