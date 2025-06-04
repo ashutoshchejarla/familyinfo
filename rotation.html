@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="animation-container">
+    <div class="animation-title">Concentric Rotations</div>
+    <div id="anim4" class="circle-container"></div>
+  </div>
+     <style>
+        @import url("https://fonts.cdnfonts.com/css/thegoodmonolith");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #f0f0f0;
+  font-family: "TheGoodMonolith", monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-size: 24px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 500px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.animation-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  transition: border-color 0.3s ease;
+}
+
+.animation-container:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.animation-title {
+  margin-bottom: 10px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.circle-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* Corner decorations for all animation containers */
+.corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  color: white;
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.animation-container:hover .corner {
+  opacity: 1;
+}
+
+.top-left {
+  top: -8px;
+  left: -8px;
+  transition-delay: 0s;
+}
+
+.top-right {
+  top: -8px;
+  right: -8px;
+  transform: rotate(90deg);
+  transition-delay: 0.1s;
+}
+
+.bottom-left {
+  bottom: -8px;
+  left: -8px;
+  transform: rotate(-90deg);
+  transition-delay: 0.2s;
+}
+
+.bottom-right {
+  bottom: -8px;
+  right: -8px;
+  transform: rotate(180deg);
+  transition-delay: 0.3s;
+}
+
+/* 4. Concentric Rotations */
+.concentric-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+.concentric-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  animation: rotateRing linear infinite;
+}
+@keyframes rotateRing {
+  to {
+    transform: rotate(360deg);
+  }
+}
+    </style>
+    <script>
+        (function initCircleAnimations2025() {
+            function setupConcentricRotations() {
+    const c = document.getElementById("anim4");
+    if (!c) return;
+    c.innerHTML = "";
+    const wrap = document.createElement("div");
+    wrap.className = "concentric-container";
+    c.appendChild(wrap);
+    const cd = document.createElement("div");
+    cd.className = "dot";
+    cd.style.width = cd.style.height = "5px";
+    cd.style.left = "calc(50% - 2.5px)";
+    cd.style.top = "calc(50% - 2.5px)";
+    cd.style.background = "rgba(255,255,255,0.9)";
+    wrap.appendChild(cd);
+    for (let r = 0; r < 8; r++) {
+      const ring = document.createElement("div");
+      ring.className = "concentric-ring";
+      ring.style.animationDuration = `${3 * Math.pow(1.5, r)}s`;
+      const radius = 10 + r * 10,
+        circ = 2 * Math.PI * radius;
+      const count = Math.max(6, Math.floor(circ / 10));
+      for (let i = 0; i < count; i++) {
+        const d = document.createElement("div");
+        d.className = "dot";
+        const angle = (i / count) * 2 * Math.PI;
+        const x = Math.cos(angle) * radius,
+          y = Math.sin(angle) * radius;
+        d.style.width = d.style.height = "4px";
+        d.style.left = `calc(50% + ${x}px - 2px)`;
+        d.style.top = `calc(50% + ${y}px - 2px)`;
+        d.style.background = `rgba(255,255,255,${(90 - r * 5) / 100})`;
+        ring.appendChild(d);
+      }
+      wrap.appendChild(ring);
+    }
+  }
+    // Add corner decorations to all animation containers
+  function addCornerDecorations() {
+    document.querySelectorAll(".animation-container").forEach((container) => {
+      // Create corner SVG elements
+      const corners = ["top-left", "top-right", "bottom-left", "bottom-right"];
+
+      corners.forEach((position) => {
+        const corner = document.createElement("div");
+        corner.className = `corner ${position}`;
+
+        // Use the plus symbol SVG
+        const svg = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "svg"
+        );
+        svg.setAttribute("width", "16");
+        svg.setAttribute("height", "16");
+        svg.setAttribute("viewBox", "0 0 512 512");
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+
+        // Create plus symbol polygon
+        const polygon = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "polygon"
+        );
+        polygon.setAttribute(
+          "points",
+          "448,224 288,224 288,64 224,64 224,224 64,224 64,288 224,288 224,448 288,448 288,288 448,288"
+        );
+        polygon.setAttribute("fill", "currentColor");
+
+        svg.appendChild(polygon);
+        corner.appendChild(svg);
+        container.appendChild(corner);
+      });
+    });
+  }
+
+  window.addEventListener("load", () => {
+    setupConcentricRotations();
+    addCornerDecorations(); // Add the corner decorations
+  });
+})();
+    </script>
+</body>
+</html>
